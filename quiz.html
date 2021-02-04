@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ - CODE</title>
+    <link rel="stylesheet" href="fontawesome-5.14.0-web/css/all.css">
+</head>
+<body>
+    <h1>#How to make quiz in #Python | NIRUPAM | #NIRUPAM |</h1>
+    <h2>
+    Copy The Code Below :
+    </h2>
+    <div class="container">
+        <div class="content">
+            <h2>questions = ['Where do Nirupam live?',
+                'Which operating system do Nirupam use?', 'Is Nirupam a student?']
+   </h2>
+   <h2>
+    answers = ['Hyderabad', 'Windows', 'Yes']
+   </h2>
+   <h2>
+    num_rights = 0
+   </h2>
+   <h2>
+    for i in range(len(questions)):
+   </h2>
+   <h2>
+    guess = input(questions[i])
+   </h2>
+   <h2>if guess.lower() == answers[i].lower():</h2>
+   <h2>print('Correct')</h2>
+   <h2>num_rights = num_rights + 1</h2>
+   <h2>else:</h2>
+   <h2>print('Wrong,The answer is', answers[i])</h2>
+   <h2>print('You have', num_rights, 'out of', i, 'right')</h2>
+      <div class="popup">
+        <h4>Copied 📋</h4>
+        </div>
+        </div>
+    </div>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Nunito";
+  font-size: 18px;
+  background-color: rgb(173, 236, 236);
+  font-weight: 300;
+}
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content {
+  background-color: white;
+  color: black;
+  position: relative;
+  padding: 30px;
+  border-radius: 10px;
+}
+.content h2 {
+  cursor: pointer;
+  font-size: 35px;
+  font-weight: 700;
+}
+.popup {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  width: fit-content;
+  top: -100px;
+  left: 50%;
+  transform: translate(-50%, -20px);
+  background-color: white;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 10px;
+  transition: 0.5s ease-in-out all;
+}
+.popup.active {
+  animation: copyPopup 1s ease forwards;
+}
+
+@keyframes copyPopup {
+  0% {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -20px);
+  }
+  40% {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -20px);
+  }
+}
+
+    </style>
+    <script>
+        const text = document.querySelector(".content h2");
+const popup = document.querySelector(".popup");
+
+text.addEventListener("click", () => {
+  popup.classList.add("active");
+  copyToClipBoard();
+});
+popup.addEventListener("animationend", () => {
+  popup.classList.remove("active");
+});
+
+function copyToClipBoard() {
+  const textarea = document.createElement("textarea");
+  textarea.setAttribute("readonly", "");
+  textarea.value = text.innerText;
+  textarea.style.position = "absolute";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+}
+
+    </script>
+</body>
+</html>
