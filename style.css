@@ -71,3 +71,10 @@ ul li.active a {
   background-color: #ffffff;
   color: #000000;
 }
+
+img {
+  width: 150px;
+  height: 150px;
+  margin-left: 350px;
+  margin-top: 550px;
+}
