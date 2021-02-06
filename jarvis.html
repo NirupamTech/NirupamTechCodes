@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Code</title>
+</head>
+<body>
+    <h1>#Jarvis in Python | NIRUPAM | #NIRUPAM |</h1>
+    <h2>
+        Copy the code Below :
+    </h2>
+    <div class="container">
+        <div class="content">
+            <textarea readonly="" cols="100" rows="30" style="resize: none;">
+                import pyttsx3  # pip install pyttsx3
+import speech_recognition as sr  # pip install speechRecognition
+import datetime
+import wikipedia  # pip install wikipedia
+import pyjokes
+import webbrowser
+import os
+import pyautogui
+import smtplib
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+# print(voices[0].id)
+engine.setProperty('voice', voices[0].id)
+
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        speak("Good Morning")
+
+    elif hour >= 12 and hour < 18:
+        speak("Good Afternoon")
+
+    else:
+        speak("Good Evening")
+
+    speak("I am Jarvis Sir Please tell me how may I help you ")
+
+
+def takeCommand():
+    # It takes microphone input from the user and returns string output
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing")
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User Said: {query}\n")
+
+    except Exception as e:
+        print("Say That Again Please...")
+        return "None"
+    return query
+
+
+def sendEmail(to, content):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('SENDER'S EMAIL', 'SENDER'S EMAIL PASSWORD')
+    server.sendmail('SENDER'S EMAIL', to, content)
+    server.close()
+
+
+if __name__ == "__main__":
+    wishMe()
+    while True:
+        query = takeCommand().lower()
+
+        if 'wikipedia' in query:
+            speak('Searching Wikipedia...')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=2)
+            speak("According to Wikipedia")
+            print(results)
+            speak(results)
+
+        elif 'open youtube' in query:
+            speak('Opening Youtube')
+            webbrowser.open("youtube.com")
+
+        elif 'open google' in query:
+            speak("Opening Google")
+            webbrowser.open("google.com")
+
+        elif 'open stackoverflow' in query:
+            speak("Opening stackoverflow")
+            webbrowser.open("stackoverflow.com")
+
+        elif 'tell me a joke' in query:
+            s = pyjokes.get_joke(language='en', category=all)
+            speak(s)
+
+        elif 'open facebook' in query:
+            speak('Opening facebook')
+            webbrowser.open("facebook.com")
+
+        elif 'play music' in query:
+            speak('Playing songs')
+            music_dir = "C:\\Users\\user\\Downloads\\Favorite songs"
+            songs = os.listdir(music_dir)
+            print(songs)
+            os.startfile(os.path.join(music_dir, songs[0]))
+
+        elif 'open cmd' in query:
+            speak('Opening Command prompt')
+            cmdPath = "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\System Tools\\Command Prompt"
+            os.startfile(cmdPath)
+
+        elif 'open note' in query:
+            speak('Opening Notepad')
+            notePath = "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Notepad"
+            os.startfile(notePath)
+
+        elif 'switch the window' in query:
+            speak('Switching the window')
+            pyautogui.hotkey('alt', 'tab')
+
+        elif 'create a new tab' in query:
+            speak('Creating a new tab')
+            pyautogui.hotkey('ctrl', 't')
+
+        elif 'close the tab' in query:
+            speak('Closing the tab')
+            pyautogui.hotkey('ctrl', 'w')
+
+        elif 'open notifications' in query:
+            speak('Opening notifications')
+            pyautogui.hotkey('win', 'a')
+
+        elif 'who are you' in query:
+            speak('I am jarvis developed by Nirupam')
+
+        elif 'switch the tab' in query:
+            speak('Switching the tab')
+            pyautogui.hotkey('ctrl', 'tab')
+
+        elif 'open studio' in query:
+            speak('Opening visual studio code')
+            vscPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code"
+            os.startfile(vscPath)
+
+        elif 'open obs' in query:
+            speak('Opening obs studio')
+            obsPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\OBS Studio\\OBS Studio (64bit)"
+            os.startfile(obsPath)
+
+        elif 'open editor' in query:
+            speak('Opening editor')
+            edtPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Wondershare\\Filmora9\\Wondershare Filmora9"
+            os.startfile(edtPath)
+
+        elif 'time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir, the time is {strTime}")
+
+        elif 'email to me' in query:
+            try:
+                speak("What shoul I say?")
+                content = takeCommand()
+                to = "RECIEVER'S EMAIL"
+                sendEmail(to, content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("Sorry Nirupam I could not send email, try again later")
+
+                </textarea>
+        </div>
+    </div>
+</body>
+</html>
